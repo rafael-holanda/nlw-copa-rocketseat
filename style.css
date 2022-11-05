@@ -1,31 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap');
-
 * {
-  margin: 0px;
-  padding: 0px;
-  list-style: none;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
-  background-image: url("./assets/bg.svg");
-  background-color: #121214;
-  background-position-x: center;
-  background-position-y: 55%;
-  text-align: center;
+:root {
+  --card-title-border-color: #746615;
+  --card-color-primary: #f7dd43;
+  --card-bg-color: #1d1c19;
+  --bg: url(./assets/bg-yellow.svg);
+}
+
+body.blue {
+  --card-title-border-color: #338af3;
+  --card-color-primary: #338af3;
+  --card-bg-color: #202024;
+  --bg: url(./assets/bg-blue.svg);
+}
+
+body.green {
+  --card-title-border-color: #047c3f;
+  --card-color-primary: #047c3f;
+  --card-bg-color: #1a1f1b;
+  --bg: url(./assets/bg-green.svg);
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background: #121214 var(--bg) no-repeat top center/cover;
 }
 
 body * {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 #app {
   width: fit-content;
-  margin: 52px auto
+  margin: auto;
+  padding-top: 52px;
 }
 
 header {
   margin-bottom: 63px;
+  text-align: center;
 }
 
 #cards {
@@ -36,8 +56,10 @@ header {
 
 .card {
   padding: 32px 23px;
-  background-color: #1d1c18;
-  border-bottom: 2px solid #f7dd43;
+  text-align: center;
+
+  background: var(--card-bg-color);
+  border-bottom: 2px solid var(--card-color-primary);
   border-radius: 6px;
 }
 
@@ -48,7 +70,7 @@ header {
   align-items: center;
 
   padding: 8px 16px;
-  border: 1px solid #746615;
+  border: 1px solid var(--card-title-border-color);
   border-radius: 6px;
 
   width: fit-content;
@@ -58,7 +80,7 @@ header {
   color: #f7dd43;
 }
 
-h2 span {
+.card h2 span {
   color: #e1e1e6;
   font-size: 14px;
   text-transform: uppercase;
@@ -78,7 +100,7 @@ h2 span {
   justify-content: space-between;
 }
 
-.card ul li+li {
+.card ul li + li {
   padding-top: 24px;
   border-top: 1px solid #323238;
 }
@@ -89,4 +111,40 @@ h2 span {
   line-height: 125%;
 
   color: #e1e1e6;
+}
+
+.card h2:hover,
+.card ul li strong:hover,
+.card ul li img:hover {
+  transform: scale(1.1);
+}
+
+.card h2,
+.card ul li strong,
+.card ul li img {
+  transition: transform 0.3s;
+}
+
+.card {
+  opacity: 0;
+  animation: appear 0.2s forwards;
+}
+
+@keyframes appear {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 700px) {
+  #cards {
+    max-width: 670px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
